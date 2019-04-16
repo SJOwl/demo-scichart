@@ -16,7 +16,8 @@ android {
     }
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
     }
@@ -25,8 +26,12 @@ android {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(kotlin("stdlib-jdk7", Versions.kotlin))
-    implementation("androidx.appcompat:appcompat:${Versions.support}")
     implementation("androidx.core:core-ktx:${Versions.ktx}")
+//    implementation("androidx.constraintlayout:constraintlayout:${Versions.constraint}")
+    implementation("org.jetbrains.anko:anko-commons:${Versions.anko}")
+    implementation("org.jetbrains.anko:anko-coroutines:${Versions.anko}")
+    implementation("org.jetbrains.anko:anko-sdk27:${Versions.anko}")
+    implementation("org.jetbrains.anko:anko-sdk27-coroutines:${Versions.anko}")
 
     testImplementation("androidx.room:room-testing:${Versions.Test.room}")
     testImplementation("junit:junit:${Versions.Test.junit}")

@@ -2,12 +2,14 @@ object Versions {
     const val kotlin = "1.3.21"
 
     const val sdkCompile = 28
-    const val sdkMin = 21
+    const val sdkMin = 15
     const val sdkTarget = 28
 
     const val ktlint = "1.21.0"
     const val lightsaber = "0.9.0-beta"
     const val coroutines = "1.1.0"
+
+    const val constraint = "1.1.3"
 
     const val support = "1.1.0-alpha03"
     const val constraint_layout = "2.0.0-alpha03"
@@ -33,7 +35,6 @@ object Versions {
     const val bottomnavigation = "3.0.0"
     const val sjnavigation = "0.1.1"
     const val appcompat = "1.1.0-alpha02"
-    const val constraint = "1.1.3"
     const val firebase_auth = "16.1.0"
     const val firebase_database = "16.0.6"
     const val firebase_play_services = "16.0.1"
