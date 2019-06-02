@@ -32,6 +32,8 @@ dependencies {
     implementation("org.jetbrains.anko:anko-coroutines:${Versions.anko}")
     implementation("org.jetbrains.anko:anko-sdk27:${Versions.anko}")
     implementation("org.jetbrains.anko:anko-sdk27-coroutines:${Versions.anko}")
+    implementation(project(":widgets"))
+    implementation(project(":base"))
 
     testImplementation("androidx.room:room-testing:${Versions.Test.room}")
     testImplementation("junit:junit:${Versions.Test.junit}")
