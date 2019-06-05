@@ -2,14 +2,18 @@ object Versions {
     const val kotlin = "1.3.21"
 
     const val sdkCompile = 28
-    const val sdkMin = 15
+    const val sdkMin = 16
     const val sdkTarget = 28
 
-    const val ktlint = "1.21.0"
+    const val ktlint = "0.30.0"
     const val lightsaber = "0.9.0-beta"
     const val coroutines = "1.1.0"
 
     const val constraint = "1.1.3"
+
+    const val koin = "2.0.0"
+    const val okhttp3Integration = "4.3.1"
+    const val room = "2.1.0-beta01"
 
     const val support = "1.1.0-alpha03"
     const val constraint_layout = "2.0.0-alpha03"
@@ -19,7 +23,6 @@ object Versions {
     const val okhttp = "3.11.0"
     const val glide = "4.8.0"
     const val lifecycle = "2.0.0"
-    const val room = "2.1.0-alpha04"
     const val anko = "0.10.8"
     const val recyclerview = "1.0.0"
     const val material = "1.0.0"
@@ -38,8 +41,14 @@ object Versions {
     const val firebase_auth = "16.1.0"
     const val firebase_database = "16.0.6"
     const val firebase_play_services = "16.0.1"
-
+    const val androidSvg = "1.2.1"
+    const val cicerone = "5.0.0"
+    const val timber = "4.7.1"
+    const val play_services_maps = "16.1.0"
+    const val multidex = "1.0.3"
+    const val coreKtx = "1.0.2"
     const val androidx_runner = "1.1.0"
+    const val stetho="1.5.1"
 
     object Test {
         const val junit = "4.12"
@@ -49,7 +58,7 @@ object Versions {
         const val json = "20140107"
         const val kluent = "1.36"
         const val mockito = "1.6.0"
+        const val mockitoKotlin = "2.21.0"
         const val robolectric = "3.8"
     }
 }
-
