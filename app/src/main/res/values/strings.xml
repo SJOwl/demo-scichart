@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Bare Bones Project</string>
+    <string name="pressBackTwice">Click \"Back\" again to close app</string>
 </resources>

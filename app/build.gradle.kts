@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
     id("kotlin-android-extensions")
+    kotlin("kapt")
 }
 
 android {
@@ -26,14 +27,29 @@ android {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(kotlin("stdlib-jdk7", Versions.kotlin))
+
+    implementation(project(":widgets"))
+    implementation(project(":base"))
+
+    implementation("androidx.appcompat:appcompat:${Versions.appcompat}")
+    implementation("com.android.support:multidex:${Versions.multidex}")
     implementation("androidx.core:core-ktx:${Versions.ktx}")
-//    implementation("androidx.constraintlayout:constraintlayout:${Versions.constraint}")
+    implementation("androidx.recyclerview:recyclerview:${Versions.recyclerview}")
+    implementation("androidx.constraintlayout:constraintlayout:${Versions.constraint}")
     implementation("org.jetbrains.anko:anko-commons:${Versions.anko}")
     implementation("org.jetbrains.anko:anko-coroutines:${Versions.anko}")
     implementation("org.jetbrains.anko:anko-sdk27:${Versions.anko}")
     implementation("org.jetbrains.anko:anko-sdk27-coroutines:${Versions.anko}")
-    implementation(project(":widgets"))
-    implementation(project(":base"))
+    implementation("org.koin:koin-android:${Versions.koin}")
+    implementation("org.koin:koin-androidx-scope:${Versions.koin}")
+    implementation("io.reactivex.rxjava2:rxjava:${Versions.rxjava}")
+    implementation("io.reactivex.rxjava2:rxandroid:${Versions.rxandroid}")
+    implementation("ru.terrakok.cicerone:cicerone:${Versions.cicerone}")
+    implementation("com.jakewharton.timber:timber:${Versions.timber}")
+    implementation("androidx.room:room-runtime:${Versions.room}")
+    kapt("androidx.room:room-compiler:${Versions.room}")
+    implementation("androidx.room:room-rxjava2:${Versions.room}")
+    implementation("com.facebook.stetho:stetho:${Versions.stetho}")
 
     testImplementation("androidx.room:room-testing:${Versions.Test.room}")
     testImplementation("junit:junit:${Versions.Test.junit}")
@@ -43,7 +59,7 @@ dependencies {
     testImplementation("org.amshove.kluent:kluent:${Versions.Test.kluent}")
     testImplementation("com.nhaarman:mockito-kotlin:${Versions.Test.mockito}")
     testImplementation("org.robolectric:robolectric:${Versions.Test.robolectric}")
-    testImplementation("org.mockito:mockito-inline:2.18.0")
+    testImplementation("org.mockito:mockito-inline:2.21.0")
 
     androidTestImplementation("com.nhaarman:mockito-kotlin:${Versions.Test.mockito}")
     androidTestImplementation("androidx.test:runner:${Versions.androidx_runner}")
