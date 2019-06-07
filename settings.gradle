@@ -1,1 +1,1 @@
-include ':app', ':ktlintx', ':widgets', ':base'
+include ':app', ':ktlintx', ':widgets', ':base', ':gallery'
