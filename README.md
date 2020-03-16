@@ -7,7 +7,7 @@ Kotlin
 [Koin](https://insert-koin.io/)
 
 ## Task
-[embed]./test-task.pdf[/embed]
+[Read the task](https://github.com/SJOwl/demo-scichart/blob/master/test-task.pdf)
 
 ## Build
 To run this app you need to set your SciChart [license key](https://www.scichart.com/licensing-scichart-android/).
