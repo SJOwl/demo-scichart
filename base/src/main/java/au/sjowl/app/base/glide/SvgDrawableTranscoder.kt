@@ -9,14 +9,14 @@ import com.caverock.androidsvg.SVG
 
 /**
  * Convert the [SVG]'s internal representation to an Android-compatible one
- * ([Picture]).
+ * Picture.
  */
 class SvgDrawableTranscoder : ResourceTranscoder<SVG, PictureDrawable> {
     override fun transcode(toTranscode: Resource<SVG>, options: Options): Resource<PictureDrawable> {
         return transcode(toTranscode)
     }
 
-    fun transcode(toTranscode: Resource<SVG>): Resource<PictureDrawable> {
+    private fun transcode(toTranscode: Resource<SVG>): Resource<PictureDrawable> {
         val svg = toTranscode.get()
         val picture = svg.renderToPicture()
         val drawable = PictureDrawable(picture)

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Base</string>
+    <string name="to_close_the_application_press_back">To close app, press \"Back\" again</string>
+    <string name="internal_storage">Internal storage</string>
 </resources>

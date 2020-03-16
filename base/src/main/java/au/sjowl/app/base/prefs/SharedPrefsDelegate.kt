@@ -6,7 +6,7 @@ import kotlin.reflect.KProperty
 class SharedPrefsDelegate<T>(
     val context: Context,
     val key: String,
-    val defaultValue: T
+    private val defaultValue: T
 ) {
     @Suppress("UNCHECKED_CAST", "IMPLICIT_CAST_TO_ANY")
     operator fun getValue(

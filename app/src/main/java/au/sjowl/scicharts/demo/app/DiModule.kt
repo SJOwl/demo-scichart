@@ -1,42 +1,44 @@
 package au.sjowl.scicharts.demo.app
 
-import au.sjowl.app.base.rx.AppSchedulers
-import au.sjowl.app.base.rx.DefaultSchedulers
-import au.sjowl.scicharts.demo.MainActivity
-import au.sjowl.scicharts.demo.base.PermissionsManager
-import au.sjowl.scicharts.demo.base.RealPermissionsManager
-import io.reactivex.Scheduler
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import android.content.Context
+import android.content.res.Resources
+import au.sjowl.app.base.android.coroutines.CoroutineDispatchersProvider
+import au.sjowl.app.base.android.coroutines.ICoroutineDispatchersProvider
+import au.sjowl.app.base.navigation.LocalCiceroneHolder
+import au.sjowl.scicharts.demo.base.ErrorHandler
+import au.sjowl.scicharts.demo.service.IPriceService
+import au.sjowl.scicharts.demo.service.PriceService
+import au.sjowl.scicharts.demo.ui.home.MainActivity
+import au.sjowl.scicharts.demo.ui.home.MainPresenter
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
+import ru.terrakok.cicerone.Cicerone
+import ru.terrakok.cicerone.NavigatorHolder
+import ru.terrakok.cicerone.Router
 
-const val schedMain = "SchedMain"
-const val schedIO = "SchedIO"
+const val routerMain = "routerMain"
+const val navigationHolderMain = "navigationHolderMain"
 
 val appModule = module {
-    factory<Scheduler>(named(schedMain)) { AndroidSchedulers.mainThread() }
-    factory<Scheduler>(named(schedIO)) { Schedulers.io() }
-    single<AppSchedulers> { DefaultSchedulers() }
-    single<PermissionsManager> {
-        RealPermissionsManager(
-            get(),
-            get(named(schedMain))
-        )
-    }
+    single<ICoroutineDispatchersProvider> { CoroutineDispatchersProvider() }
+    single { ErrorHandler() }
+
+    single<Resources> { get<Context>().resources }
+    single { LocalCiceroneHolder() }
+    single<Cicerone<Router>> { Cicerone.create() }
 }
 
-val uiModule = module {
+val homeModule = module {
+    single<Router>(named(routerMain)) { get<Cicerone<Router>>().router }
+    single<NavigatorHolder>(named(navigationHolderMain)) { get<Cicerone<Router>>().navigatorHolder }
 
-    scope(named<MainActivity>()) {
-    }
-}
+    factory { MainPresenter(get(), get(), get()) }
+    scope(named<MainActivity>()) {}
 
-val dataModule = module {
+    factory<IPriceService> { PriceService(get()) }
 }
 
 val appComponent = listOf(
     appModule,
-    uiModule,
-    dataModule
+    homeModule
 )

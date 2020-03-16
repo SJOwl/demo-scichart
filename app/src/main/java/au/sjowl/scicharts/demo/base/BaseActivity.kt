@@ -1,24 +1,34 @@
 package au.sjowl.scicharts.demo.base
 
-import android.os.Bundle
-import au.sjowl.scicharts.demo.base.rx.RxActivity
-import org.koin.android.ext.android.inject
+import au.sjowl.app.base.android.coroutines.CoroutineActivity
+import au.sjowl.app.base.navigation.MyAppNavigator
+import au.sjowl.scicharts.demo.R
+import org.jetbrains.anko.toast
+import ru.terrakok.cicerone.NavigatorHolder
 
-abstract class BaseActivity<P : BasePresenter<V>, V : BaseView> : RxActivity<P, V>() {
+abstract class BaseActivity<V : BaseView> : CoroutineActivity<V>() {
 
-    val permissionsManager: PermissionsManager by inject()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        permissionsManager.attach(this)
+    open val navigator by lazy {
+        MyAppNavigator(this, R.id.container)
     }
 
-    override fun onDestroy() {
-        permissionsManager.detach(this)
-        super.onDestroy()
+    protected abstract val navigatorHolder: NavigatorHolder
+
+    override fun onResume() {
+        super.onResume()
+        navigatorHolder.setNavigator(navigator)
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        permissionsManager.processResult(requestCode, permissions, grantResults)
+    override fun onPause() {
+        super.onPause()
+        navigatorHolder.removeNavigator()
+    }
+
+    override fun showCommonError(stringId: Int) {
+        showCommonError(getString(stringId))
+    }
+
+    override fun showCommonError(message: String) {
+        toast(message)
     }
 }

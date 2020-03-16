@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <dimen name="size_3xS" tools:ignore="PxUsage" tools:keep="@dimen/size_3xS">2px</dimen>
+    <dimen name="size_dp">1dp</dimen>
+    <dimen name="size_2xS" tools:keep="@dimen/size_2xS">2dp</dimen>
+    <dimen name="size_xS" tools:keep="@dimen/size_xS">4dp</dimen>
+    <dimen name="size_S" tools:keep="@dimen/size_S">8dp</dimen>
+    <dimen name="size_M" tools:keep="@dimen/size_M">12dp</dimen>
+    <dimen name="size_L" tools:keep="@dimen/size_L">16dp</dimen>
+    <dimen name="size_xL" tools:keep="@dimen/size_xL">24dp</dimen>
+    <dimen name="size_2xL" tools:keep="@dimen/size_2xL">32dp</dimen>
+    <dimen name="size_3xL" tools:keep="@dimen/size_3xL">40dp</dimen>
+    <dimen name="size_4xL" tools:keep="@dimen/size_4xL">48dp</dimen>
+    <dimen name="size_5xL" tools:keep="@dimen/size_5xL">56dp</dimen>
+    <dimen name="size_6xL" tools:keep="@dimen/size_6xL">64dp</dimen>
+    <dimen name="size_7xL" tools:keep="@dimen/size_7xL">72dp</dimen>
+    <dimen name="size_8xL" tools:keep="@dimen/size_8xL">80dp</dimen>
+    <dimen name="size_9xL" tools:keep="@dimen/size_9xL">88dp</dimen>
+    <dimen name="size_10xL" tools:keep="@dimen/size_10xL">96dp</dimen>
+
+    <dimen name="vertical_divider_width">4dp</dimen>
+    <dimen name="dialog_corner_radius">8dp</dimen>
+    <dimen name="exo_control_main_size">40dp</dimen>
+    <dimen name="button_min_width">200dp</dimen>
+    <dimen name="empty_view_max_width">250dp</dimen>
+    <dimen name="language_picker_padding_top">152dp</dimen>
+    <dimen name="progress_big">48dp</dimen>
+    <dimen name="progress_small">32dp</dimen>
+</resources>

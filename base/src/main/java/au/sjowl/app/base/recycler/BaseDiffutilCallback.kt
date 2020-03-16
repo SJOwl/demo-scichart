@@ -7,7 +7,7 @@ class BaseDiffutilCallback<D>(
     var oldList: List<D> = emptyList(),
     var newList: List<D> = emptyList(),
     var areItemsTheSame: ((oldItem: D, newItem: D) -> Boolean) = { oldItem, newItem -> oldItem == newItem },
-    var areContentsTheSame: ((oldItem: D, newItem: D) -> Boolean) = { oldItem, newItem -> oldItem == newItem },
+    var areContentsTheSame: ((oldItem: D, newItem: D) -> Boolean) = { oldItem, newItem -> false }, // called only when areItemsTheSame = true
     var getChangePayload: ((oldItem: D, newItem: D) -> Any?) = { oldItem, newItem -> bundleOf() }
 ) : DiffUtil.Callback() {
 

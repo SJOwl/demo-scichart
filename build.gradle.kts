@@ -21,6 +21,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven("https://www.myget.org/F/abtsoftware/maven")
     }
 }
 tasks {

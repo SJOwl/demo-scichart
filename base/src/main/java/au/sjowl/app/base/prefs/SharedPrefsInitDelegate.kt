@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package au.sjowl.app.base.prefs
 
 import android.content.Context
@@ -6,7 +8,7 @@ import kotlin.reflect.KProperty
 class SharedPrefsInitDelegate<T>(
     val context: Context,
     val key: String,
-    val defaultValue: T
+    private val defaultValue: T
 ) {
 
     private val value = when (defaultValue) {

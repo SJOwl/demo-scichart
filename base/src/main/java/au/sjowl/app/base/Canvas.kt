@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package au.sjowl.app.base
 
 import android.graphics.Canvas

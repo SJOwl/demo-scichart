@@ -1,4 +1,4 @@
-val ktlint by configurations.creating
+val ktlint: Configuration by configurations.creating
 val outputDir = "${project.buildDir}/reports/ktlint/"
 val inputFiles = project.fileTree(mapOf("dir" to "src", "include" to "**/*.kt"))
 plugins {
@@ -16,6 +16,11 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         versionCode = ReleaseConfig.versionCode
         versionName = ReleaseConfig.versionName
+        buildConfigField(
+            "String",
+            "SciChartLicenseKey",
+            "\"9BnXZR6cyEKnyMvhUBJ/7BWwS0zmsoCADOefVjooI6qFVptJLZ6MIeRlSh4hZUhDLxY2xXIV67/ZBPnr+KTNug2Q9HwXgwhiG9FF2Ol0cWrMWfr4KhVlIwYlWOeovixfwQjyutHsIg2EdVJLp9PiNhP8F2hJs0+TM1i5ZOG7ApWXC8Mp9LCnzpuH8yeMZwvma4W6d1DBqnU9Z5eKZ6m6IjqccmRUwNMiXHX1aSiOzov+025sqoifMibOR4u/tpaIw7kw6L4eXkCGm+p5qEjKhA6j8wXakVN2QdCRQQktuo0qQNu6824GBPgPRsID1twjQtOaxZFI8QpeqvMcqbZgUfBht/+dPO9aMmUwYgiMfdijVjmotcO6fAyaIewHrKwaoAjjP9gacGwhgeEObw00Qzm7iGBz0IGXOhiLMYpSikcWZfLrMZP0x5LzkN2+KzfUe5TPqgz3aJnHJLmMNTwu6wfVes53cGws9JoPWwHUjgJHvDk/H31N8nBj6Da9tACnBbO3ldGFvVUZhaYUuZxMYrOacsLC6PM3TGP739VfvlEHmrjnnAWZ4Z5+4O1jfHrMSl5WzK+3uwoXBQk=\""
+        )
     }
     buildTypes {
         getByName("release") {
@@ -75,6 +80,49 @@ dependencies {
     implementation("org.koin:koin-androidx-scope:${Versions.koin}")
     implementation("ru.terrakok.cicerone:cicerone:${Versions.cicerone}")
     implementation(group = "commons-lang", name = "commons-lang", version = "2.6")
+
+    implementation(
+        group = "com.scichart.library",
+        name = "core",
+        version = Versions.sciChart,
+        ext = "aar"
+    )
+    implementation(
+        group = "com.scichart.library",
+        name = "data",
+        version = Versions.sciChart,
+        ext = "aar"
+    )
+    implementation(
+        group = "com.scichart.library",
+        name = "drawing",
+        version = Versions.sciChart,
+        ext = "aar"
+    )
+    implementation(
+        group = "com.scichart.library",
+        name = "charting3d",
+        version = Versions.sciChart,
+        ext = "aar"
+    )
+    implementation(
+        group = "com.scichart.library",
+        name = "charting",
+        version = Versions.sciChart,
+        ext = "aar"
+    )
+    implementation(
+        group = "com.scichart.library",
+        name = "extensions",
+        version = Versions.sciChart,
+        ext = "aar"
+    )
+    implementation(
+        group = "com.scichart.library",
+        name = "extensions3d",
+        version = Versions.sciChart,
+        ext = "aar"
+    )
 
     debugImplementation("com.squareup.leakcanary:leakcanary-android:2.2")
 

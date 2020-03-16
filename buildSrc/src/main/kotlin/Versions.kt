@@ -74,6 +74,7 @@ object Versions {
     const val vectordrawable = "1.1.0-alpha01"
     const val viewpagerdots = "1.0.0"
     const val workManager = "2.3.0"
+    const val sciChart = "3.0.0.4253"
 
     object Test {
         const val espresso = "3.2.0"

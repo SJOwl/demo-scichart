@@ -10,7 +10,7 @@ plugins {
 android {
     compileSdkVersion(Versions.sdkCompile)
     defaultConfig {
-        applicationId = "bare.bones.project.gallery"
+        applicationId = "au.sjowl.scicharts.demo.gallery"
         minSdkVersion(Versions.sdkMin)
         targetSdkVersion(Versions.sdkTarget)
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

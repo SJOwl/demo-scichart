@@ -1,10 +1,20 @@
-# Template for new android projects
-Features:
-* Uses Ktlint with custom kotlin code sorting (ktlintx module) 
+# Sci chart sandbox Android application
+## Features
+Kotlin
+[Kotlin DSL]()
+[SciChart](https://www.scichart.com/downloads/) library
+[Coroutines](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md)
+[Koin](https://insert-koin.io/)
 
-Usage:
-* Replace "<string name="app_name">404 demo</string>" with your app name
-* Replace "bare.bones.project" with your project package
-* move MainActivity.kt to your package
-* remove folder bare/bones/project
-* Android Studio: File -> Invalidate caches and restart
+## Task
+[embed]./test-task.pdf[/embed]
+
+## Build
+To run this app you need to set your SciChart [license key](https://www.scichart.com/licensing-scichart-android/).
+After you get it paste it at `app/build.gradle.kts` to
+```
+buildConfigField("String", "SciChartLicenseKey", "\"<Your key here>\"")
+```
+
+## Screenshots
+![Screenshot](./demo.png?raw=true)

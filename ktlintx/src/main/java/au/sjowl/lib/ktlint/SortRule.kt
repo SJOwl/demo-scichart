@@ -10,46 +10,64 @@ class SortRule : Rule("kotlin-sort") {
 
     private val sorter = Sorter()
 
-    override fun visit(node: ASTNode, autoCorrect: Boolean, emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit) {
+    override fun visit(
+        node: ASTNode,
+        autoCorrect: Boolean,
+        emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit
+    ) {
 
-        if (node.elementType == KtStubElementTypes.CLASS) {
-            println(classes++)
-        }
+        when {
+            node.elementType == KtStubElementTypes.IMPORT_LIST -> {
+                val children = node.getChildren(null)
+                val sortedInnerElements = children
+                    .filter { it.text.isNotBlank() }
+                    .sortedBy { it.text }
 
-        if (node.elementType == KtStubElementTypes.CLASS_BODY) {
-            val children = node.getChildren(null)
-            val innerElements = children.filter { sorter.sortList.contains(it.elementType) }
-            val sortedInnerElements = innerElements
-                .sortedBy { sorter.getMethodIndex(it) }
-                .sortedBy { sorter.getModifierIndex(it) }
-                .sortedBy { sorter.sortList.indexOf(it.elementType) }
+                if (children != sortedInnerElements) {
 
-            if (innerElements != sortedInnerElements) {
-
-                emit(node.startOffset, "Incorrect order of inners", true)
-
-                if (autoCorrect) {
-                    innerElements.forEach {
+                    children.forEach {
                         node.removeChild(it)
                     }
-
-                    sorter.removeSpaces(node)
-
-                    val start = node.findChildByType(KtTokens.LBRACE)!!.treeNext
-
-                    sortedInnerElements.forEachIndexed { i, astNode ->
-                        if (i == 0) node.addChild(PsiWhiteSpaceImpl(sorter.space), start)
-                        node.addChild(astNode, start)
-                        node.addChild(PsiWhiteSpaceImpl(sorter.space), start)
+                    sortedInnerElements.forEachIndexed { index, astNode ->
+                        if (index != 0) node.addChild(PsiWhiteSpaceImpl("\n"), null)
+                        node.addChild(astNode, null)
                     }
-                    sorter.removeWhitespacesBefore(node, node.findChildByType(KtTokens.RBRACE)!!)
+                }
+            }
+            node.elementType == KtStubElementTypes.CLASS_BODY -> {
+                val children = node.getChildren(null)
+                val innerElements = children.filter { sorter.sortList.contains(it.elementType) }
+                val sortedInnerElements = innerElements
+                    .sortedBy { sorter.getMethodIndex(it) }
+                    .sortedBy { sorter.getModifierIndex(it) }
+                    .sortedBy { sorter.sortList.indexOf(it.elementType) }
+
+                if (innerElements != sortedInnerElements) {
+
+                    emit(node.startOffset, "Incorrect order of inners", true)
+
+                    if (autoCorrect) {
+                        innerElements.forEach {
+                            node.removeChild(it)
+                        }
+
+                        sorter.removeSpaces(node)
+
+                        val start = node.findChildByType(KtTokens.LBRACE)!!.treeNext
+
+                        sortedInnerElements.forEachIndexed { i, astNode ->
+                            if (i == 0) node.addChild(PsiWhiteSpaceImpl(sorter.space), start)
+                            node.addChild(astNode, start)
+                            node.addChild(PsiWhiteSpaceImpl(sorter.space), start)
+                        }
+                        sorter.removeWhitespacesBefore(
+                            node,
+                            node.findChildByType(KtTokens.RBRACE)!!
+                        )
+                    }
                 }
             }
         }
-    }
-
-    companion object {
-        var classes = 0
     }
 }
 

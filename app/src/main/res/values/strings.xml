@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">404 demo</string>
-    <string name="pressBackTwice">Click \"Back\" again to close app</string>
+    <string name="no_internet_connection">No connection</string>
 </resources>

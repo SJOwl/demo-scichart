@@ -1,5 +1,3 @@
-import Versions.ktlint
-
 val ktlint: Configuration by configurations.creating
 val outputDir = "${project.buildDir}/reports/ktlint/"
 val inputFiles = project.fileTree(mapOf("dir" to "src", "include" to "**/*.kt"))

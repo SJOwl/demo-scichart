@@ -2,108 +2,32 @@ package au.sjowl.app.base.prefs
 
 import android.content.Context
 import android.content.SharedPreferences
-import au.sjowl.app.base.SLog
 
 fun Context.getPrivateSharedPreferences(): SharedPreferences {
     return this.getSharedPreferences("$packageName:preference", Context.MODE_PRIVATE)
 }
 
-fun Context.setProperty(tag: String, isValue: Boolean) {
-    try {
-        val spe = getPrivateSharedPreferences().edit()
-        spe.putBoolean(tag, isValue).apply()
-    } catch (ex: Exception) {
-        SLog.e(this.javaClass.simpleName, ex)
+fun <T> Context.setProperty(key: String, value: T) {
+    val spe = getPrivateSharedPreferences().edit()
+    when (value) {
+        is Boolean -> spe.putBoolean(key, value as Boolean).apply()
+        is Float -> spe.putFloat(key, value as Float).apply()
+        is Int -> spe.putInt(key, value as Int).apply()
+        is Long -> spe.putLong(key, value as Long).apply()
+        is String -> spe.putString(key, value as String).apply()
+        else -> throw IllegalStateException("This type can not be put in bundle")
     }
 }
 
-fun Context.setProperty(tag: String, value: Int) {
-    try {
-        val spe = getPrivateSharedPreferences().edit()
-        spe.putInt(tag, value).apply()
-    } catch (ex: Exception) {
-        SLog.e(this.javaClass.simpleName, ex)
-    }
-}
+fun <T> Context.getProperty(key: String, defaultValue: T): T {
 
-fun Context.setProperty(tag: String, value: Long) {
-    try {
-        val spe = getPrivateSharedPreferences().edit()
-        spe.putLong(tag, value).apply()
-    } catch (ex: Exception) {
-        SLog.e(this.javaClass.simpleName, ex)
-    }
-}
-
-fun Context.setProperty(tag: String, value: Float) {
-    try {
-        val spe = getPrivateSharedPreferences().edit()
-        spe.putFloat(tag, value).apply()
-    } catch (ex: Exception) {
-        SLog.e(this.javaClass.simpleName, ex)
-    }
-}
-
-fun Context.setProperty(tag: String, value: String) {
-    try {
-        val spe = getPrivateSharedPreferences().edit()
-        spe.putString(tag, value).apply()
-    } catch (ex: Exception) {
-        SLog.e(this.javaClass.simpleName, ex)
-    }
-}
-
-fun Context.getProperty(tag: String, default_value: String): String {
-    var result = default_value
-    try {
-        val sp = getPrivateSharedPreferences()
-        result = sp.getString(tag, default_value)
-    } catch (ex: Exception) {
-        SLog.e(this.javaClass.simpleName, ex)
-    }
-    return result
-}
-
-fun Context.getProperty(tag: String, default_value: Boolean): Boolean {
-    var result = default_value
-    try {
-        val sp = getPrivateSharedPreferences()
-        result = sp.getBoolean(tag, default_value)
-    } catch (ex: Exception) {
-        SLog.e(this.javaClass.simpleName, ex)
-    }
-    return result
-}
-
-fun Context.getProperty(tag: String, default_value: Int): Int {
-    var result = default_value
-    try {
-        val sp = getPrivateSharedPreferences()
-        result = sp.getInt(tag, default_value)
-    } catch (ex: Exception) {
-        SLog.e(this.javaClass.simpleName, ex)
-    }
-    return result
-}
-
-fun Context.getProperty(tag: String, default_value: Long): Long {
-    var result = default_value
-    try {
-        val sp = getPrivateSharedPreferences()
-        result = sp.getLong(tag, default_value)
-    } catch (ex: Exception) {
-        SLog.e(this.javaClass.simpleName, ex)
-    }
-    return result
-}
-
-fun Context.getProperty(tag: String, default_value: Float): Float {
-    var result = default_value
-    try {
-        val sp = getPrivateSharedPreferences()
-        result = sp.getFloat(tag, default_value)
-    } catch (ex: Exception) {
-        SLog.e(this.javaClass.simpleName, ex)
-    }
-    return result
+    val sp = getPrivateSharedPreferences()
+    return when (defaultValue) {
+        is Boolean -> sp.getBoolean(key, defaultValue)
+        is Float -> sp.getFloat(key, defaultValue)
+        is Int -> sp.getInt(key, defaultValue)
+        is Long -> sp.getLong(key, defaultValue)
+        is String -> sp.getString(key, defaultValue)
+        else -> throw IllegalArgumentException("This type is not supported by shared prefs")
+    } as T
 }

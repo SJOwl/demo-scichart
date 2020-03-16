@@ -1,9 +1,11 @@
+@file:Suppress("unused")
+
 package au.sjowl.app.base
 
-import android.transition.Transition
-import android.transition.TransitionManager
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.transition.Transition
+import androidx.transition.TransitionManager
 
 fun ConstraintLayout.constrain(block: ((cs: ConstraintSet) -> Unit)) {
     val cs = ConstraintSet()
@@ -15,9 +17,7 @@ fun ConstraintLayout.constrain(block: ((cs: ConstraintSet) -> Unit)) {
 fun ConstraintLayout.constrain(transition: Transition, block: ((cs: ConstraintSet) -> Unit)) {
     val cs = ConstraintSet()
     cs.clone(this)
-    if (android.os.Build.VERSION.SDK_INT >= 19) {
-        TransitionManager.beginDelayedTransition(this, transition)
-    }
+    TransitionManager.beginDelayedTransition(this, transition)
     block.invoke(cs)
     cs.applyTo(this)
 }
