@@ -1,4 +1,8 @@
+import Versions.ktlint
 
+val ktlint: Configuration by configurations.creating
+val outputDir = "${project.buildDir}/reports/ktlint/"
+val inputFiles = project.fileTree(mapOf("dir" to "src", "include" to "**/*.kt"))
 plugins {
     id("com.android.library")
     kotlin("android")
@@ -32,12 +36,6 @@ dependencies {
 
     implementation(project(":base"))    
 
-    val inputFiles = project.fileTree(mapOf("dir" to "src", "include" to "**/*.kt"))    
-
-    val ktlint by configurations.creating    
-
-    val outputDir = "${project.buildDir}/reports/ktlint/"    
-
     implementation("androidx.appcompat:appcompat:${Versions.appcompat}")
     implementation("androidx.constraintlayout:constraintlayout:${Versions.constraint}")
     implementation("androidx.core:core-ktx:${Versions.coreKtx}")
@@ -47,28 +45,25 @@ dependencies {
     implementation("org.jetbrains.anko:anko-sdk27:${Versions.anko}")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}")    
 
-    api("com.aurelhubert:ahbottomnavigation:2.3.4")    
+    api("com.aurelhubert:ahbottomnavigation:2.3.4")
 
-    testImplementation("junit:junit:${Versions.Test.junit}")    
+    testImplementation("junit:junit:${Versions.Test.jUnit}")
+}
 
-    androidTestImplementation("androidx.test.espresso:espresso-core:${Versions.Test.espresso}")
-    androidTestImplementation("androidx.test:runner:${Versions.Test.runner}")
-    dependencies {
-        ktlint("com.github.shyiko:ktlint:${Versions.ktlint}")        
-
-        ktlint(project(":ktlintx"))
-    }
-    val ktlintFormat by tasks.creating(JavaExec::class) {
-        inputs.files(inputFiles)
-        outputs.dir(outputDir)
-        description = "Fix Kotlin code style deviations."
-        classpath = ktlint
-        main = "com.github.shyiko.ktlint.Main"
-        args = listOf("-F", "src/main/**/*.kt")
-    }
-    tasks {
-        preBuild {
-            dependsOn(ktlintFormat)
-        }
+dependencies {
+    ktlint("com.pinterest:ktlint:${Versions.ktlint}")
+    ktlint(project(":ktlintx"))
+}
+val ktlintFormat by tasks.creating(JavaExec::class) {
+    inputs.files(inputFiles)
+    outputs.dir(outputDir)
+    description = "Fix Kotlin code style deviations."
+    classpath = ktlint
+    main = "com.pinterest.ktlint.Main"
+    args = listOf("-F", "src/main/**/*.kt")
+}
+tasks {
+    preBuild {
+        dependsOn(ktlintFormat)
     }
 }

@@ -5,8 +5,8 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:3.4.1")
-        classpath("com.github.shyiko:ktlint:0.30.0")
+        classpath("com.android.tools.build:gradle:${Versions.gradle}")
+        classpath("com.pinterest:ktlint:${Versions.ktlint}")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
     }
 }

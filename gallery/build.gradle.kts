@@ -45,15 +45,15 @@ dependencies {
     implementation("org.jetbrains.anko:anko-coroutines:${Versions.anko}")
     implementation("org.jetbrains.anko:anko-sdk27-coroutines:${Versions.anko}")
     implementation("org.jetbrains.anko:anko-sdk27:${Versions.anko}")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}")    
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}")
 
-    testImplementation("junit:junit:${Versions.Test.junit}")    
+    testImplementation("junit:junit:${Versions.Test.jUnit}")
 
     androidTestImplementation("androidx.test.espresso:espresso-core:${Versions.Test.espresso}")
     androidTestImplementation("androidx.test:runner:${Versions.Test.runner}")
 }
 dependencies {
-    ktlint("com.github.shyiko:ktlint:${Versions.ktlint}")    
+    ktlint("com.pinterest:ktlint:${Versions.ktlint}")
 
     ktlint(project(":ktlintx"))
 }
@@ -62,7 +62,7 @@ val ktlintFormat by tasks.creating(JavaExec::class) {
     outputs.dir(outputDir)
     description = "Fix Kotlin code style deviations."
     classpath = ktlint
-    main = "com.github.shyiko.ktlint.Main"
+    main = "com.pinterest.ktlint.Main"
     args = listOf("-F", "src/main/**/*.kt")
 }
 tasks {

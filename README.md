@@ -3,7 +3,7 @@ Features:
 * Uses Ktlint with custom kotlin code sorting (ktlintx module) 
 
 Usage:
-* Replace "<string name="app_name">Bare Bones Project</string>" with your app name
+* Replace "<string name="app_name">404 demo</string>" with your app name
 * Replace "bare.bones.project" with your project package
 * move MainActivity.kt to your package
 * remove folder bare/bones/project

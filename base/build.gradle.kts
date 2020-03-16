@@ -53,14 +53,14 @@ dependencies {
     api("com.github.bumptech.glide:glide:${Versions.glide}")
     api("com.github.bumptech.glide:okhttp3-integration:${Versions.okhttp3Integration}")    
 
-    kapt("com.github.bumptech.glide:compiler:${Versions.glide}")    
+    kapt("com.github.bumptech.glide:compiler:${Versions.glide}")
 
-    testImplementation("junit:junit:${Versions.Test.junit}")    
+    testImplementation("junit:junit:${Versions.Test.jUnit}")
 
     androidTestImplementation("androidx.test.espresso:espresso-core:${Versions.Test.espresso}")
     androidTestImplementation("androidx.test:runner:${Versions.Test.runner}")
     dependencies {
-        ktlint("com.github.shyiko:ktlint:${Versions.ktlint}")        
+        ktlint("com.pinterest:ktlint:${Versions.ktlint}")
 
         ktlint(project(":ktlintx"))
     }
@@ -69,7 +69,7 @@ dependencies {
         outputs.dir(outputDir)
         description = "Fix Kotlin code style deviations."
         classpath = ktlint
-        main = "com.github.shyiko.ktlint.Main"
+        main = "com.pinterest.ktlint.Main"
         args = listOf("-F", "src/main/**/*.kt")
     }
     tasks {

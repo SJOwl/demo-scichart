@@ -18,10 +18,10 @@ import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
+import kotlin.system.measureNanoTime
 import org.jetbrains.anko.dip
 import org.jetbrains.anko.sp
 import org.jetbrains.anko.topPadding
-import kotlin.system.measureNanoTime
 
 fun View.contains(px: Int, py: Int): Boolean {
     return px > x && px < x + measuredWidth && py > y && py < y + measuredHeight
