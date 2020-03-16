@@ -1,9 +1,9 @@
 # Sci chart sandbox Android application
 ## Features
-Kotlin
-[Kotlin DSL]()
-[SciChart](https://www.scichart.com/downloads/) library
-[Coroutines](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md)
+Kotlin<br>
+[Kotlin DSL]()<br>
+[SciChart](https://www.scichart.com/downloads/) library<br>
+[Coroutines](https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md)<br>
 [Koin](https://insert-koin.io/)
 
 ## Task
